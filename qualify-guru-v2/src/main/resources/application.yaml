@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: qualify-guru-v2

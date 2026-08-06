@@ -7,10 +7,9 @@ import org.springframework.modulith.docs.Documenter;
 public class ModularityTests {
 
     @Test
-    void verifiesModularStructure() {
+    void verifiesAndCreateDocsOfTheModularStructure() {
         ApplicationModules modules = ApplicationModules.of(QualifyGuruV2Application.class);
 
-        modules.forEach(System.out::println);
         modules.verify();
 
         new Documenter(modules)

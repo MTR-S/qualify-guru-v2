@@ -21,22 +21,27 @@ public class ResumeOptimizationController {
     }
 
     @PostMapping("/extract")
-    public ResponseEntity<String> uploadResume(@RequestParam("file")MultipartFile file) {
+    public ResponseEntity<AdaptedResumeResponse> uploadResume(
+            @RequestParam("file")MultipartFile file,
+            @RequestParam("jobTitle") String jobTitle,
+            @RequestParam("jobDescription") String jobDescriptionText) {
 
         if(file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Please upload a valid PDF file.");
+            return ResponseEntity.badRequest().build();
         }
 
         try(InputStream inputStream = file.getInputStream()) {
-            String extractedText = resumeOptimizationService.processResume(inputStream);
+            JobDescriptionRequest jobDescription = new JobDescriptionRequest(jobTitle, jobDescriptionText);
 
-            return ResponseEntity.ok(extractedText);
+            AdaptedResumeResponse response = resumeOptimizationService.extractAndProcessResume(inputStream, jobDescription);
+
+            return ResponseEntity.ok(response);
 
         } catch(IOException e) {
-            return ResponseEntity.internalServerError().body("Failed to read the uploaded file.");
+            return ResponseEntity.internalServerError().build();
 
         } catch (ResumeExtractionException e) {
-            return ResponseEntity.unprocessableEntity().body(e.getMessage());
+            return ResponseEntity.unprocessableEntity().build();
         }
     }
 }

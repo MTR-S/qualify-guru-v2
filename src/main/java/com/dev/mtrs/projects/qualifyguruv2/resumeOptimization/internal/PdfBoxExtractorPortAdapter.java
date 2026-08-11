@@ -1,7 +1,7 @@
 package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
 
 import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeExtractionException;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeTextExtractor;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeTextExtractorPort;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.io.RandomAccessReadBuffer;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Component
-public class PdfBoxExtractorAdapter implements ResumeTextExtractor {
+public class PdfBoxExtractorPortAdapter implements ResumeTextExtractorPort {
 
     @Override
     public String extractText(InputStream fileStream) {

@@ -1,6 +1,6 @@
 package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeTextExtractor;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeTextExtractorPort;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PdfBoxTextExtractorAdapterTest {
 
     private final String TEST_FILE_NAME = "qualifyguruv2-testfile.pdf";
-    private final ResumeTextExtractor extractor = new PdfBoxExtractorAdapter();
+    private final ResumeTextExtractorPort extractor = new PdfBoxExtractorPortAdapter();
 
 
     @Test

@@ -7,14 +7,18 @@ import java.io.InputStream;
 @Service
 public class ResumeOptimizationService {
 
-    private final ResumeTextExtractor textExtractor;
+    private final ResumeTextExtractorPort textExtractor;
+    private final ResumeOptimizationPort aiAdapter;
 
-    public ResumeOptimizationService(ResumeTextExtractor textExtractor) {
+    public ResumeOptimizationService(ResumeTextExtractorPort textExtractor, ResumeOptimizationPort aiAdapter) {
         this.textExtractor = textExtractor;
+        this.aiAdapter = aiAdapter;
     }
 
-    public String processResume(InputStream pdfStream) {
+    public AdaptedResumeResponse extractAndProcessResume(InputStream pdfStream, JobDescriptionRequest jobDescription) {
 
-        return textExtractor.extractText(pdfStream);
+        String rawResumeText = textExtractor.extractText(pdfStream);
+
+        return aiAdapter.adaptResume(rawResumeText, jobDescription);
     }
 }

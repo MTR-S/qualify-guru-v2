@@ -1,24 +1,42 @@
 package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
 
 @Service
 public class ResumeOptimizationService {
 
     private final ResumeTextExtractorPort textExtractor;
     private final ResumeOptimizationPort aiAdapter;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public ResumeOptimizationService(ResumeTextExtractorPort textExtractor, ResumeOptimizationPort aiAdapter) {
+    public ResumeOptimizationService(ResumeTextExtractorPort textExtractor,
+                                     ResumeOptimizationPort aiAdapter,
+                                     ApplicationEventPublisher eventPublisher) {
         this.textExtractor = textExtractor;
         this.aiAdapter = aiAdapter;
+        this.eventPublisher = eventPublisher;
     }
 
+    @Transactional
     public AdaptedResumeResponse extractAndProcessResume(InputStream pdfStream, JobDescriptionRequest jobDescription) {
 
         String rawResumeText = textExtractor.extractText(pdfStream);
 
-        return aiAdapter.adaptResume(rawResumeText, jobDescription);
+        AdaptedResumeResponse aiResponse = aiAdapter.adaptResume(rawResumeText, jobDescription);
+
+        ResumeOptimizedEvent event = new ResumeOptimizedEvent(
+                jobDescription.title(),
+                aiResponse.compatibilityPercentage(),
+                LocalDateTime.now()
+        );
+
+        eventPublisher.publishEvent(event);
+
+        return aiResponse;
     }
 }

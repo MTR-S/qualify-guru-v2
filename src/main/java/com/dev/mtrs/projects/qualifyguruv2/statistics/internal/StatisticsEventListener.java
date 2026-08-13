@@ -10,10 +10,12 @@ public class StatisticsEventListener {
 
     private static final Logger log = LoggerFactory.getLogger(StatisticsEventListener.class);
 
-    // TODO: Inject your StatisticsRepository here later to save to the database
+    private final StatisticsRepository repository;
 
-    // This annotation automatically makes the execution ASYNCHRONOUS
-    // and binds it to the completion of the main database transaction.
+    public StatisticsEventListener(StatisticsRepository repository) {
+        this.repository = repository;
+    }
+
     @ApplicationModuleListener
     void on(ResumeOptimizedEvent event) {
 
@@ -21,6 +23,14 @@ public class StatisticsEventListener {
                 event.jobTitle(),
                 event.compatibilityPercentage());
 
-        // Logic to save the metrics to the statistics database goes here
+        OptimizationMetric metric = new OptimizationMetric(
+                event.jobTitle(),
+                event.compatibilityPercentage(),
+                event.optimizedAt()
+        );
+
+        repository.save(metric);
+
+        log.info("Successfully saved metric to database.");
     }
 }

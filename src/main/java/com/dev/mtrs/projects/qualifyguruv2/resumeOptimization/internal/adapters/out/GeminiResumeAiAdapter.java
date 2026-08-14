@@ -1,19 +1,19 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
+package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.out;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.AdaptedResumeResponse;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.JobDescriptionRequest;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in.JobDescriptionRequest;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeAiOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 @Component
-public class GeminiResumeAdapter implements ResumeOptimizationPort {
+public class GeminiResumeAiAdapter implements ResumeAiOptimizationPort {
 
     private final ChatClient chatClient;
 
-    public GeminiResumeAdapter(ChatClient.Builder builder) {
+    public GeminiResumeAiAdapter(ChatClient.Builder builder) {
         this.chatClient = builder
                 .defaultSystem("Você é um sistema especialista em otimização de currículos (ATS). " +
                         "REGRA ABSOLUTA: Você É ESTRITAMENTE PROIBIDO de inventar ou adicionar " +

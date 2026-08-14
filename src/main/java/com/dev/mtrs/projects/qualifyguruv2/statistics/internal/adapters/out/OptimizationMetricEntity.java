@@ -1,11 +1,11 @@
-package com.dev.mtrs.projects.qualifyguruv2.statistics.internal;
+package com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "STAT_OPTIMIZATION_METRICS")
-public class OptimizationMetric {
+public class OptimizationMetricEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,9 @@ public class OptimizationMetric {
     @Column(nullable = false)
     private LocalDateTime optimizedAt;
 
-    protected OptimizationMetric() {}
+    protected OptimizationMetricEntity() {}
 
-    public OptimizationMetric(String jobTitle, int compatibilityPercentage, LocalDateTime optimizedAt) {
+    public OptimizationMetricEntity(String jobTitle, int compatibilityPercentage, LocalDateTime optimizedAt) {
         this.jobTitle = jobTitle;
         this.compatibilityPercentage = compatibilityPercentage;
         this.optimizedAt = optimizedAt;

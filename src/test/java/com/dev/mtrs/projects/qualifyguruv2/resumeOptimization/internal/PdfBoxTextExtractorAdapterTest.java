@@ -1,6 +1,7 @@
 package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeTextExtractorPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.out.PdfBoxExtractorPortAdapter;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeTextExtractorPort;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

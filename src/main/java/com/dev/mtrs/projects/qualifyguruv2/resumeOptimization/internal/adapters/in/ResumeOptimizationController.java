@@ -1,5 +1,8 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization;
+package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in;
 
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.in.ResumeOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.ResumeExtractionException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +17,10 @@ import java.io.InputStream;
 @RequestMapping("api/v1/resumes")
 public class ResumeOptimizationController {
 
-    private final ResumeOptimizationService resumeOptimizationService;
+    private final ResumeOptimizationPort resumeOptimization;
 
-    private ResumeOptimizationController(ResumeOptimizationService resumeOptimizationService) {
-        this.resumeOptimizationService = resumeOptimizationService;
+    private ResumeOptimizationController(ResumeOptimizationPort resumeOptimization) {
+        this.resumeOptimization = resumeOptimization;
     }
 
     @PostMapping("/extract")
@@ -33,7 +36,7 @@ public class ResumeOptimizationController {
         try(InputStream inputStream = file.getInputStream()) {
             JobDescriptionRequest jobDescription = new JobDescriptionRequest(jobTitle, jobDescriptionText);
 
-            AdaptedResumeResponse response = resumeOptimizationService.extractAndProcessResume(inputStream, jobDescription);
+            AdaptedResumeResponse response = resumeOptimization.extractAndProcessResume(inputStream, jobDescription);
 
             return ResponseEntity.ok(response);
 

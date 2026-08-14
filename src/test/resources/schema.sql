@@ -19,3 +19,10 @@ CREATE TABLE IF NOT EXISTS stat_optimization_metrics (
     compatibility_percentage INT NOT NULL,
     optimized_at TIMESTAMP(6) NOT NULL
     );
+
+-- Identity Module Table
+CREATE TABLE IF NOT EXISTS auth_users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+    );

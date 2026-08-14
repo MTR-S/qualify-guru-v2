@@ -1,6 +1,7 @@
 package com.dev.mtrs.projects.qualifyguruv2.statistics.internal;
 
 import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeOptimizedEvent;
+import com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out.StatisticsRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.test.ApplicationModuleTest;

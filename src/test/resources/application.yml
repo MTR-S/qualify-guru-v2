@@ -2,6 +2,8 @@ spring:
   datasource:
     url: jdbc:h2:mem:modulith-test;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
+    username: sa
+    password: password
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
@@ -18,3 +20,12 @@ spring:
       jdbc:
         schema-initialization:
           enabled: true
+
+  ai:
+    google:
+      genai:
+        api-key: "dummy-test-key-for-tests-only"
+
+security:
+  jwt:
+    secret: "dummyTestSecretKeyThatIsAtLeast32BytesLongForHS256="

@@ -1,5 +1,7 @@
-package com.dev.mtrs.projects.qualifyguruv2.statistics.internal;
+package com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.in;
 import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeOptimizedEvent;
+import com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out.OptimizationMetricEntity;
+import com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out.StatisticsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.modulith.events.ApplicationModuleListener;
@@ -23,7 +25,7 @@ public class StatisticsEventListener {
                 event.jobTitle(),
                 event.compatibilityPercentage());
 
-        OptimizationMetric metric = new OptimizationMetric(
+        OptimizationMetricEntity metric = new OptimizationMetricEntity(
                 event.jobTitle(),
                 event.compatibilityPercentage(),
                 event.optimizedAt()

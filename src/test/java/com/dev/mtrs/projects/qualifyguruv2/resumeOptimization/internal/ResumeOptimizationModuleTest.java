@@ -2,6 +2,11 @@ package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
 
 import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.*;
 
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in.JobDescriptionRequest;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in.ResumeOptimizationService;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeAiOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeTextExtractorPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -15,8 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+import org.springframework.security.test.context.support.WithMockUser;
 
 @ApplicationModuleTest
+@WithMockUser
 public class ResumeOptimizationModuleTest {
 
     @Autowired
@@ -26,18 +33,16 @@ public class ResumeOptimizationModuleTest {
     private ResumeTextExtractorPort textExtractor;
 
     @MockitoBean
-    private ResumeOptimizationPort aiAdapter;
+    private ResumeAiOptimizationPort aiAdapter;
 
     @Test
     void shouldPublishEventWhenResumeIsProcessed(PublishedEvents events) {
-// Arrange
+        // Arrange
         JobDescriptionRequest job = new JobDescriptionRequest("Junior Software Developer", "Requires Java and Spring Boot");
         ByteArrayInputStream dummyPdfStream = new ByteArrayInputStream("mock pdf content".getBytes());
 
-        // Tell Mockito to intercept the calls and return our fake data instantly
         when(textExtractor.extractText(any())).thenReturn("Fake resume text");
 
-        // NOTE: Adjust the arguments here if your AdaptedResumeResponse constructor looks different!
         when(aiAdapter.adaptResume(anyString(), any())).thenReturn(
                 new AdaptedResumeResponse("Mocked text", 95, List.of())
         );

@@ -1,10 +1,10 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.in;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeOptimizedEvent;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.in.ResumeOptimizationPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeAiOptimizationPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeTextExtractorPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.ResumeOptimizedEvent;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.in.ResumeOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeAiOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeTextExtractorPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain.AdaptedResumeResponse;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

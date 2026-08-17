@@ -1,7 +1,7 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.out;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.out;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeTextExtractorPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.ResumeExtractionException;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeTextExtractorPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain.ResumeExtractionException;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.io.RandomAccessReadBuffer;
 import org.apache.pdfbox.pdmodel.PDDocument;

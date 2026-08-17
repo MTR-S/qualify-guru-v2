@@ -1,4 +1,4 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain;
 
 import java.util.List;
 

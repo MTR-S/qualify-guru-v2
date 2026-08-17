@@ -1,14 +1,16 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.*;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.*;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in.JobDescriptionRequest;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in.ResumeOptimizationService;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeAiOptimizationPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeTextExtractorPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.in.JobDescriptionRequest;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.in.ResumeOptimizationService;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeAiOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeTextExtractorPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain.AdaptedResumeResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.PublishedEvents;
@@ -22,6 +24,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import org.springframework.security.test.context.support.WithMockUser;
 
+@ActiveProfiles("test")
 @ApplicationModuleTest
 @WithMockUser
 public class ResumeOptimizationModuleTest {

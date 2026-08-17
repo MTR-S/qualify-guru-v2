@@ -1,4 +1,4 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out;
 
 import java.io.InputStream;
 

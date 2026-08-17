@@ -1,8 +1,10 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.out.PdfBoxExtractorPortAdapter;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeTextExtractorPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.out.PdfBoxExtractorPortAdapter;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeTextExtractorPort;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,6 +12,8 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@SpringBootTest
+@ActiveProfiles("test")
 public class PdfBoxTextExtractorAdapterTest {
 
     private final String TEST_FILE_NAME = "qualifyguruv2-testfile.pdf";

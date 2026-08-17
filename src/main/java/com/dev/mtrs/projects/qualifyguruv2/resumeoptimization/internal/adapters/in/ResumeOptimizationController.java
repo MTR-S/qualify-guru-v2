@@ -1,8 +1,8 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.in;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.in.ResumeOptimizationPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.ResumeExtractionException;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.in.ResumeOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain.AdaptedResumeResponse;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain.ResumeExtractionException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,8 @@
-package com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.out;
+package com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.out;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.adapters.in.JobDescriptionRequest;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.ports.out.ResumeAiOptimizationPort;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.internal.domain.AdaptedResumeResponse;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.adapters.in.JobDescriptionRequest;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.ports.out.ResumeAiOptimizationPort;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.internal.domain.AdaptedResumeResponse;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Component;
 

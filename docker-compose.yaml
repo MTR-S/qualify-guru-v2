@@ -1,0 +1,43 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: qualify-guru-v2-mysql
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
+      - MYSQL_USER=${DATASOURCE_USER}
+      - MYSQL_PASSWORD=${DATASOURCE_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: qualify-guru-v2-mongo
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    container_name: qualify-minio
+    restart: always
+    ports:
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web Console UI
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  mysql_data:
+  minio_data:

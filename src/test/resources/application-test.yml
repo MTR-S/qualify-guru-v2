@@ -24,8 +24,8 @@ spring:
   ai:
     google:
       genai:
-        api-key: "dummy-test-key-for-tests-only"
+        api-key: dummy-test-key
 
 security:
   jwt:
-    secret: "dummyTestSecretKeyThatIsAtLeast32BytesLongForHS256="
+    secret: 8z3bA9x4Y7djI90OJ8k9L0m1N2p3Q4r5T6w7y8U9v0A=

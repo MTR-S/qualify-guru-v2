@@ -113,6 +113,13 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- Bucket4j for API Rate Limiting -->
+		<dependency>
+			<groupId>com.bucket4j</groupId>
+			<artifactId>bucket4j-core</artifactId>
+			<version>8.10.1</version>
+		</dependency>
+
 		<!-- JWT Processing (JJWT) -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>

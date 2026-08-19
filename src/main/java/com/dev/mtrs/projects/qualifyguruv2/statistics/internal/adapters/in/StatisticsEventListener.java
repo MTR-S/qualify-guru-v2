@@ -1,5 +1,5 @@
 package com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.in;
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeOptimizedEvent;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.ResumeOptimizedEvent;
 import com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out.OptimizationMetricEntity;
 import com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out.StatisticsRepository;
 import org.slf4j.Logger;

@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:modulith-test;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+  modulith:
+    events:
+      jdbc:
+        schema-initialization:
+          enabled: true
+
+  ai:
+    google:
+      genai:
+        api-key: dummy-test-key
+
+security:
+  jwt:
+    secret: 8z3bA9x4Y7djI90OJ8k9L0m1N2p3Q4r5T6w7y8U9v0A=

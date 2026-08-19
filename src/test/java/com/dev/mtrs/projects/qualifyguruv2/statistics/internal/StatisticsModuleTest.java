@@ -1,16 +1,20 @@
 package com.dev.mtrs.projects.qualifyguruv2.statistics.internal;
 
-import com.dev.mtrs.projects.qualifyguruv2.resumeOptimization.ResumeOptimizedEvent;
+import com.dev.mtrs.projects.qualifyguruv2.resumeoptimization.ResumeOptimizedEvent;
 import com.dev.mtrs.projects.qualifyguruv2.statistics.internal.adapters.out.StatisticsRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
+import org.springframework.test.context.ActiveProfiles;
+
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ApplicationModuleTest
+@ActiveProfiles("test")
 public class StatisticsModuleTest {
 
     @Autowired

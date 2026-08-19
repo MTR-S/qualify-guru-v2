@@ -26,3 +26,17 @@ CREATE TABLE IF NOT EXISTS auth_users (
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
     );
+
+-- Candidate Profile Module Tables
+CREATE TABLE IF NOT EXISTS cand_candidates (
+    id BIGINT PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS cand_saved_resumes (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    s3_file_url VARCHAR(500) NOT NULL,
+    saved_at TIMESTAMP NOT NULL,
+    candidate_id BIGINT NOT NULL,
+    CONSTRAINT fk_candidate FOREIGN KEY (candidate_id) REFERENCES cand_candidates(id)
+    );

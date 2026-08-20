@@ -11,6 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: dummy-test-access-key
+      AWS_SECRET_ACCESS_KEY: dummy-test-secret-key
+
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4

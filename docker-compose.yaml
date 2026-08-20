@@ -1,4 +1,27 @@
 services:
+  api:
+    build: .
+    image: qualify-guru-api
+    container_name: qualify-api
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - minio
+    environment:
+      - PROFILE=local
+      - DATASOURCE_URL=${DATASOURCE_URL_PRD}
+      - DATASOURCE_USER=${DATASOURCE_USER}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT_PRD}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+
   mysql:
     image: mysql:8.0
     container_name: qualify-guru-v2-mysql
@@ -11,17 +34,6 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-    restart: unless-stopped
-
-  mongodb:
-    image: mongo:latest
-    container_name: qualify-guru-v2-mongo
-    environment:
-      - MONGO_INITDB_DATABASE=${MONGO_NAME}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-    ports:
-      - "27017:27017"
     restart: unless-stopped
 
   minio:

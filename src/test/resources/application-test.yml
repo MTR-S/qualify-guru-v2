@@ -1,6 +1,10 @@
 spring:
+  http:
+    converters:
+      preferred-json-mapper: jackson2
+
   datasource:
-    url: jdbc:h2:mem:modulith-test;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:modulith-test;DB_CLOSE_DELAY=-1;MODE=MySQL
     driver-class-name: org.h2.Driver
     username: sa
     password: password
@@ -8,7 +12,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     defer-datasource-initialization: true
 
   sql:
@@ -19,7 +23,7 @@ spring:
     events:
       jdbc:
         schema-initialization:
-          enabled: true
+          enabled: false
 
   ai:
     google:

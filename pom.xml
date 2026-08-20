@@ -33,10 +33,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
 
 		<!-- Spring Modulith -->
 		<dependency>
@@ -161,6 +157,13 @@
 
 	<build>
 		<plugins>
+			<!-- 1. The Spring Boot Plugin (Builds the executable Fat JAR) -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- 2. The Compiler Plugin (Handles MapStruct and Lombok) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

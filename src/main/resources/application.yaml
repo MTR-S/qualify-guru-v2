@@ -19,11 +19,15 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        type:
+          preferred_uuid_jdbc_type: VARCHAR
         dialect: org.hibernate.dialect.MySQLDialect
 
   flyway:
     enabled: true
     baseline-on-migrate: true
+    locations: classpath:db/migration
+    fail-on-missing-locations: true
 
   ai:
     google:
@@ -38,6 +42,7 @@ spring:
     access-key: ${MINIO_ACCESS_KEY:minioaccesskey}
     secret-key: ${MINIO_SECRET_KEY:miniosecretkey}
     endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+    bucket-name: ${MINIO_BUCKET:mybucektname}
 
 
 security:

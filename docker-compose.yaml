@@ -7,15 +7,17 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
-      - minio
+      minio:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
     environment:
       - PROFILE=local
       - DATASOURCE_URL=${DATASOURCE_URL_PRD}
       - DATASOURCE_USER=${DATASOURCE_USER}
       - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
 
-      - MINIO_ENDPOINT=${MINIO_ENDPOINT_PRD}
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT}
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
 
@@ -35,6 +37,11 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 5
+      start_period: 10s
 
   minio:
     image: minio/minio:latest
@@ -44,11 +51,19 @@ services:
       - "9000:9000" # S3 API
       - "9001:9001" # Web Console UI
     environment:
-      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
-      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - MINIO_BUCKET=qualify-guru-resumes
     command: server /data --console-address ":9001"
     volumes:
       - minio_data:/data
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   mysql_data:

@@ -1,6 +1,7 @@
 package com.dev.mtrs.projects.qualifyguruv2.candidateprofile.internal.adapters.out;
 
 import com.dev.mtrs.projects.qualifyguruv2.candidateprofile.internal.ports.out.ObjectStoragePort;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -12,10 +13,12 @@ import java.util.UUID;
 public class S3StorageAdapter implements ObjectStoragePort {
 
     private final S3Client s3Client;
-    private static final String BUCKET_NAME = "qualify-guru-resumes";
+    private final String bucketName;
 
-    public S3StorageAdapter(S3Client s3Client) {
+    public S3StorageAdapter(S3Client s3Client,
+                            @Value("${spring.minio.bucket-name}") String bucketName) {
         this.s3Client = s3Client;
+        this.bucketName = bucketName;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class S3StorageAdapter implements ObjectStoragePort {
     private PutObjectRequest buildObjectRequest(String uniqueFileName) {
 
        return PutObjectRequest.builder()
-                .bucket(BUCKET_NAME)
+                .bucket(bucketName)
                 .key(uniqueFileName)
                 .contentType("application/pdf")
                 .build();
@@ -51,7 +54,7 @@ public class S3StorageAdapter implements ObjectStoragePort {
 
     private String getBucketUrl(String uniqueFileName) {
         return s3Client.utilities()
-                .getUrl(builder -> builder.bucket(BUCKET_NAME).key(uniqueFileName))
+                .getUrl(builder -> builder.bucket(bucketName).key(uniqueFileName))
                 .toExternalForm();
     }
 }

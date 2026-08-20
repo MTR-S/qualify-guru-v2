@@ -26,6 +26,17 @@ spring:
       genai:
         api-key: dummy-test-key
 
+  docker:
+    compose:
+      skip:
+        in-tests: true
+      enabled: false
+
 security:
   jwt:
     secret: 8z3bA9x4Y7djI90OJ8k9L0m1N2p3Q4r5T6w7y8U9v0A=
+
+minio:
+  endpoint: "http://localhost:9000"
+  access-key: "dummy-test-access-key"
+  secret-key: "dummy-test-secret-key"

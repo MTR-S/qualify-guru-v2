@@ -7,6 +7,9 @@
 
 An enterprise-grade, REST API that leverages Artificial Intelligence to optimize candidate resumes. Built with a strict **Modular Monolith** architecture using Spring Modulith, this system ensures high cohesion, domain isolation, and scalability.
 
+![Qualify Guru Logo](src/main/resources/images/qualify-guru-logo.jpeg)
+
+
 ## Architecture & Enterprise Patterns
 
 Qualify Guru V2 implements production-ready backend patterns:

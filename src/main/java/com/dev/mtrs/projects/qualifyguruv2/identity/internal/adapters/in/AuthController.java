@@ -7,10 +7,13 @@ import com.dev.mtrs.projects.qualifyguruv2.identity.internal.domain.AuthRequest;
 import com.dev.mtrs.projects.qualifyguruv2.identity.internal.domain.AuthResponse;
 import com.dev.mtrs.projects.qualifyguruv2.identity.internal.ports.out.AuthTokenPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.Optional;
 
 @RestController
@@ -49,18 +52,38 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         Optional<UserEntity> userOptional = userRepository.findByEmail(request.email());
 
-        if (userOptional.isEmpty()) {
+        if (userOptional.isEmpty() || !passwordEncoder.matches(request.password(), userOptional.get().getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
         UserEntity user = userOptional.get();
-
-        if (!passwordEncoder.matches(request.password(), user.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
         String token = authToken.generateToken(user.getId());
 
-        return ResponseEntity.ok(new AuthResponse(token));
+        ResponseCookie jwtCookie = ResponseCookie.from("access_token", token)
+                .httpOnly(true)
+                .secure(false)        // Needs to be defined to TRUE in production when using HTTPS
+                .path("/")
+                .maxAge(Duration.ofDays(1))
+                .sameSite("Strict")
+                .build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .body(new AuthResponse("Login successful"));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout() {
+        ResponseCookie deleteCookie = ResponseCookie.from("access_token", "")
+                .httpOnly(true)
+                .secure(false)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, deleteCookie.toString())
+                .build();
     }
 }

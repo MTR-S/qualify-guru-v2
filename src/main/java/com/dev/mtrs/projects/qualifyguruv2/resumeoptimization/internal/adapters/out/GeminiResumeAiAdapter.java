@@ -28,6 +28,11 @@ public class GeminiResumeAiAdapter implements ResumeAiOptimizationPort {
             Adapte o currículo do candidato para a vaga descrita, destacando a compatibilidade.
             Retorne ESTRITAMENTE os dados solicitados, sem adicionar explicações fora do formato.
             
+            INSTRUÇÃO DE FORMATAÇÃO:
+            O conteúdo do currículo otimizado deve ser formatado utilizando a linguagem Markdown.\s
+            Utilize cabeçalhos (##, ###), negrito (**texto**) e listas com marcadores (-) para\s
+            estruturar as seções (Ex: Resumo, Experiência, Habilidades) de forma limpa e profissional.
+            
             VAGA ALVO:
             Título: {jobTitle}
             Descrição: {jobDescription}

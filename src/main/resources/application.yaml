@@ -43,6 +43,7 @@ spring:
     secret-key: ${MINIO_SECRET_KEY:miniosecretkey}
     endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
     bucket-name: ${MINIO_BUCKET:mybucektname}
+    bucket-resumes: ${BUCKET_RESUMES:mybucketname2}
 
 
 security:

@@ -55,6 +55,7 @@ services:
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
       - MINIO_BUCKET=qualify-guru-resumes
+      - BUCKET_RESUMES=${BUCKET_RESUMES}
     command: server /data --console-address ":9001"
     volumes:
       - minio_data:/data

@@ -32,7 +32,7 @@ public class DocumentExportController {
         if (principal == null || principal.getName() == null) {
             return ResponseEntity.status(401).build();
         }
-        System.out.println(principal.getName());
+
         String securelyExtractedCandidateId = principal.getName();
 
         DocumentExportRequest domainRequest = new DocumentExportRequest(

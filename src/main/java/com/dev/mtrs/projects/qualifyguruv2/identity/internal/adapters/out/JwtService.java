@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Service
@@ -53,6 +55,6 @@ public class JwtService implements AuthTokenPort {
     }
 
     private Date oneDayExpiration() {
-        return new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+        return Date.from(Instant.now().plus(1, ChronoUnit.DAYS));
     }
 }

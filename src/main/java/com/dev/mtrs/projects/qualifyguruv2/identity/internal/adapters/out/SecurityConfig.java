@@ -57,16 +57,17 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // NO WILDCARDS ALLOWED when credentials are true
         configuration.setAllowedOrigins(List.of(frontendUrl));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
 
-        // CRITICAL: This allows the browser to send the HttpOnly cookie
         configuration.setAllowCredentials(true);
 
+        // PRODUCTION CONFIGURATION: Saves a massive amount of unnecessary network latency and database hits.
+        // configuration.setMaxAge(3600L);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        // Apply this configuration to all API endpoints
+
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
